@@ -1,4 +1,4 @@
-import { userTypeDefs } from "../models/user.js";
+import { userTypeDefs, userResolvers } from "../models/user.js";
 import _ from "lodash";
 import { createSchema, createYoga } from "graphql-yoga";
 const queries = `
@@ -6,22 +6,6 @@ const queries = `
     hello: String
     user: User
 }`;
-const userResolvers = {
-    Query: {
-        hello: () => "hello Yoga",
-        user: () => {
-            return {
-                id: 1,
-                name: "rose",
-            };
-        },
-    },
-    User: {
-        name: (parent) => {
-            return parent.name.toUpperCase();
-        },
-    },
-};
 const resolvers = {
     Query: {
         hello: () => "Hello world",
