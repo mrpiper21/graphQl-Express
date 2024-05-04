@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
 import ruru from "ruru/server";
 import morgan from "morgan";
 import { yoga } from "./graphql/schema/schema.js";

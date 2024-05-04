@@ -27,8 +27,9 @@ export const userResolvers = {
         },
     },
     Mutation: {
-        createUser: (_, args) => {
+        createUser: (_, args, context) => {
             // insert into DB
+            console.log(context.client);
             console.log({ id: 1, ...args });
             return { id: 1, ...args.user };
         },

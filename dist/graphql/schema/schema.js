@@ -1,6 +1,7 @@
 import { userTypeDefs, userResolvers } from "../models/user.js";
 import _ from "lodash";
 import { createSchema, createYoga } from "graphql-yoga";
+import { setUpDatabase } from "../../mongodb/index.js";
 const queries = `
   type Query {
     hello: String
@@ -16,6 +17,12 @@ export const yoga = createYoga({
         typeDefs: [queries, userTypeDefs],
         resolvers: _.merge(resolvers, userResolvers),
     }),
+    context: async () => {
+        const { client } = await setUpDatabase();
+        return {
+            client,
+        };
+    },
 });
 // export const schema = buildSchema(`
 //   type Product {
